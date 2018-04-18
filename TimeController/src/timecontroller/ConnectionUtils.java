@@ -5,19 +5,17 @@
  */
 package timecontroller;
 
+import da.TaskDA;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import model.Task;
 /**
  *
  * @author tuandung
  */
 public class ConnectionUtils {
-      public static Connection getMyConnection() throws SQLException,
-          ClassNotFoundException {
-      // Sử dụng Oracle.
-      // Bạn có thể thay thế bởi Database nào đó.
-      return MySQLConnUtils.getMySQLConnection();
-  }
  
   //
   // Test Connection ...
@@ -28,10 +26,16 @@ public class ConnectionUtils {
       System.out.println("Get connection ... ");
  
       // Lấy ra đối tượng Connection kết nối vào database.
-      Connection conn = ConnectionUtils.getMyConnection();
- 
-      System.out.println("Get connection " + conn);
- 
+      Task task = new Task(
+              0, 
+              "â  ", 
+              new Date(System.currentTimeMillis()), 
+              new Date(System.currentTimeMillis()), 
+              " ", 
+              0, 
+              " ");
+      //System.out.println("Get connection " + conn);
+      new TaskDA().Insert(task);
       System.out.println("Done!");
   }
 }
